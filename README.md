@@ -9,7 +9,7 @@ This project implements a deep learning pipeline for Human Activity Recognition
 (HAR) using Wi-Fi Channel State Information (CSI) amplitude data. It detects
 9 physical activities by analyzing how a person's movements affect Wi-Fi signals
 in their environment.
-
+```text
 Supported Activities:
   0 - Nothing (Static Room)
   1 - Walking
@@ -20,7 +20,7 @@ Supported Activities:
   6 - Pick Up
   7 - Sit Down
   8 - Stand Up
-
+```
 --------------------------------------------------------------------------------
 
 PROJECT FILES

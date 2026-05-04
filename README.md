@@ -196,13 +196,13 @@ dataset/
         ├── act_1_1.mp4         # Synchronized reference video
         ├── act_1_2.mp4
         └── ...                 # ~11,286 total .mp4 files
-```
+
 
   Files used by this project:
     - annotation.csv              → activity labels for training/evaluation
     - wifi_csi/amp/*.npy          → amplitude data for Train1.py and Evaluate.py
     - wifi_csi/mat/*.mat          → raw CSI data for Classify.py (real-time use)
-
+```
 --------------------------------------------------------------------------------
 
 DATASET SETUP

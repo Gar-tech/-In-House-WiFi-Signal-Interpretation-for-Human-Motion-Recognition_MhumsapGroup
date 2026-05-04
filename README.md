@@ -1,7 +1,8 @@
+```text
 ================================================================================
          Wi-Fi CSI Human Activity Recognition System — README
 ================================================================================
-
+```
 OVERVIEW
 --------
 This project implements a deep learning pipeline for Human Activity Recognition

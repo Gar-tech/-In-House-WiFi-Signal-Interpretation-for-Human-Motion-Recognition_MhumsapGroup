@@ -3,7 +3,7 @@
 # **Wi-Fi CSI Human Activity Recognition System — README**
 
 
-OVERVIEW
+## 📖 Overview
 --------
 This project implements a deep learning pipeline for Human Activity Recognition
 (HAR) using Wi-Fi Channel State Information (CSI) amplitude data. It detects

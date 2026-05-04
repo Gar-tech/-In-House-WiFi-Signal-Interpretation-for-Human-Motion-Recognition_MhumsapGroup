@@ -25,20 +25,21 @@ Supported Activities:
 
 PROJECT FILES
 -------------
+```text
   Model.py       — Neural network architecture (AmplitudeOnlyModel + Attention)
   Utils.py       — PyTorch Dataset class and CSI preprocessing logic
   Preprocess.py  — Standalone preprocessing utilities (normalization, unwrapping)
   Train1.py      — Training script with metrics logging and resource monitoring
   Evaluate.py    — Evaluation script with full metrics and confusion matrix
   Classify.py    — Real-time inference script for single .mat CSI files
-
+```
 --------------------------------------------------------------------------------
 
 ENVIRONMENT & REQUIREMENTS
 --------------------------
 The following package versions were used in development and are confirmed working.
 CUDA 12.1 is required for GPU-accelerated training (torch+cu121 build).
-
+```text
   Package             Version
   ------------------- ------------
   torch               2.5.1+cu121
@@ -74,7 +75,7 @@ CUDA 12.1 is required for GPU-accelerated training (torch+cu121 build).
   typing_extensions   4.15.0
   tzdata              2026.2
   pip                 25.0.1
-
+```
 To install PyTorch with CUDA 12.1 support:
 
   pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 \

@@ -34,7 +34,77 @@ PROJECT FILES
   Classify.py    — Real-time inference script for single .mat CSI files
 ```
 --------------------------------------------------------------------------------
-
+ML PIPELINE
+-----------
+The end-to-end machine learning pipeline consists of 5 stages:
+ ```text
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                        ML PIPELINE OVERVIEW                             │
+  └─────────────────────────────────────────────────────────────────────────┘
+ 
+  [1. RAW DATA]
+       WiMANS Dataset
+       ├── annotation.csv      → activity labels per sample
+       ├── wifi_csi/amp/*.npy  → pre-extracted CSI amplitude arrays
+       └── wifi_csi/mat/*.mat  → raw MATLAB CSI files (for inference)
+ 
+          ↓  Utils.py / CSIDataset.__getitem__()
+ 
+  [2. PREPROCESSING]
+       Per sample, applied at load time:
+       ├── Differential CSI      → diff = amp[t] - amp[t-1]
+       │                           highlights motion, removes static noise
+       ├── Z-Score Normalization → (diff - mean) / (std + 1e-6)
+       │                           zero-centers and scales each sample
+       └── Pad / Truncate        → fixed shape: (30 subcarriers × 1000 time steps)
+ 
+          ↓  Train1.py / DataLoader
+ 
+  [3. TRAINING]
+       ├── Dataset split: 80% train / 20% validation (random_split)
+       ├── Sampler: WeightedRandomSampler — balances minority classes per batch
+       ├── Optimizer: AdamW  (lr=5e-4, weight_decay=0.01)
+       ├── Loss:      CrossEntropyLoss
+       ├── Epochs:    50
+       └── Batch size: 32
+ 
+          ↓  Model.py / AmplitudeOnlyModel
+ 
+  [4. MODEL — AmplitudeOnlyModel]
+       Input: [Batch, 30, 1000]
+         │
+         ├── Stem        Conv1d(30→64, k=7) → BN → ReLU → MaxPool(4)
+         │                                                        [B, 64, 250]
+         ├── Attention   CSI_Attention (Q/K/V conv, learnable gamma)
+         │                                                        [B, 64, 250]
+         ├── Features    Conv1d(64→128, k=5) → BN → ReLU → MaxPool(4)
+         │               Conv1d(128→256, k=3) → BN → ReLU → AdaptiveAvgPool
+         │                                                        [B, 256, 1]
+         └── Classifier  Flatten → Dropout(0.5) → Linear(256→9)
+                                                                  [B, 9]
+ 
+          ↓  Evaluate.py
+ 
+  [5. EVALUATION & INFERENCE]
+       Batch evaluation (Evaluate.py):
+       ├── Accuracy   — overall correct predictions
+       ├── Precision  — macro-averaged across all 9 classes
+       ├── Recall     — macro-averaged across all 9 classes
+       ├── F1-Score   — macro-averaged across all 9 classes
+       └── Confusion Matrix — full 9×9 class breakdown
+ 
+       Real-time inference (Classify.py):
+       ├── Load single .mat file
+       ├── Apply same Differential CSI + Z-Score preprocessing
+       ├── Forward pass → softmax → argmax
+       └── Output: predicted activity label + confidence score (%)
+ 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │  RAW CSI → PREPROCESS → TRAIN → MODEL → EVALUATE / CLASSIFY            │
+  │  (Utils)    (Utils)    (Train1)  (Model)  (Evaluate / Classify)         │
+  └─────────────────────────────────────────────────────────────────────────┘
+```
+--------------------------------------------------------------------------------
 ENVIRONMENT & REQUIREMENTS
 --------------------------
 The following package versions were used in development and are confirmed working.

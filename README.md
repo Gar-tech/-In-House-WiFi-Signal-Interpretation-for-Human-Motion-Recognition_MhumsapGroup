@@ -176,22 +176,21 @@ DATASET DIRECTORY STRUCTURE
 ----------------------------
 After extraction, the dataset folder should look like this:
 
- ```text
-dataset/
-├── annotation.csv              # Labels: user identities, locations, activities
-└── wifi_csi/
-    ├── mat/
-    │   ├── act_1_1.mat         # Raw CSI sample (MATLAB format)
-    │   ├── act_1_2.mat
-    │   └── ...                 # ~11,286 total .mat files
-    ├── amp/
-    │   ├── act_1_1.npy         # Pre-extracted CSI amplitude (NumPy format)
-    │   ├── act_1_2.npy
-    │   └── ...                 # ~11,286 total .npy files
-    └── video/
-        ├── act_1_1.mp4         # Synchronized reference video
-        ├── act_1_2.mp4
-        └── ...                 # ~11,286 total .mp4 files
+  dataset/
+  ├── annotation.csv              ← Labels: user identities, locations, activities
+  └── wifi_csi/
+  │   ├── mat/
+  │   │   ├── act_1_1.mat         ← Raw CSI sample (MATLAB format)
+  │   │   ├── act_1_2.mat
+  │   │   └── ...                 ← 11,286 total .mat files
+  │   └── amp/
+  │       ├── act_1_1.npy         ← Pre-extracted CSI amplitude (NumPy format)
+  │       ├── act_1_2.npy
+  │       └── ...                 ← 11,286 total .npy files
+  └── video/
+      ├── act_1_1.mp4             ← Synchronized reference video
+      ├── act_1_2.mp4
+      └── ...                     ← 11,286 total .mp4 files
 
   Files used by this project:
     - annotation.csv              → activity labels for training/evaluation

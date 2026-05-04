@@ -163,7 +163,7 @@ CPU-only alternative (no GPU):
 
 --------------------------------------------------------------------------------
 
-QUICK START
+QUICK START [Option A — Clone from GitHub]
 -----------
 Follow these steps to go from zero to a trained model as fast as possible.
 
@@ -206,6 +206,72 @@ Follow these steps to go from zero to a trained model as fast as possible.
     > Enter .mat file path: ./dataset/wifi_csi/mat/act_1_1.mat
 
 --------------------------------------------------------------------------------
+................................................................................
+
+QUICK START  [Option B — Already have the project files]
+---------------------------------------------------------
+Use this if you already have the project folder on your machine
+(downloaded as a ZIP).
+
+  Step 1 — Install PyTorch (CUDA 12.1)
+
+    pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 \
+        --index-url https://download.pytorch.org/whl/cu121
+
+  Step 2 — Install remaining dependencies
+
+    pip install -r requirements.txt
+
+  Step 3 — Download the WiMANS dataset from Kaggle
+
+    Option i  (Browser):
+      1. Go to https://www.kaggle.com/datasets/sharmmoh/wimans
+      2. Click "Download" and extract the zip into the project folder:
+
+           project-folder/
+           └── dataset/
+               ├── annotation.csv
+               └── wifi_csi/
+                   ├── amp/    ← *.npy files go here
+                   └── mat/    ← *.mat files go here
+
+    Option ii (Kaggle CLI):
+      pip install kaggle
+      kaggle datasets download -d sharmmoh/wimans
+      unzip wimans.zip -d ./dataset/
+
+  Step 4 — Update dataset paths in Train1.py and Evaluate.py
+
+    Open each file and set:
+
+      csv_path = "./dataset/annotation.csv"
+      mat_path  = "./dataset/wifi_csi/amp"
+
+  Step 5 — Train the model
+
+    python Train1.py
+
+    Training runs for 50 epochs. A progress bar and OS metrics are printed
+    each epoch. Estimated time depends on your hardware (GPU strongly recommended).
+    Output: wifi_model.pth  and  training_os_metrics.png
+
+  Step 6 — Evaluate the trained model
+
+    python Evaluate.py
+
+    Prints Accuracy, Precision, Recall, F1-Score, and a 9×9 Confusion Matrix.
+    Requires wifi_model.pth to exist in the project folder.
+
+  Step 7 — Classify a single .mat file in real-time
+
+    python Classify.py
+    > Enter .mat file path: ./dataset/wifi_csi/mat/act_1_1.mat
+
+    Displays the detected activity and confidence score.
+    Type 'exit' to quit.
+
+--------------------------------------------------------------------------------
+
 
 DATA SOURCE
 -----------

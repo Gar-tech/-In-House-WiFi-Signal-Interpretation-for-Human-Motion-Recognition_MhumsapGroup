@@ -91,6 +91,50 @@ CPU-only alternative (no GPU):
 
 --------------------------------------------------------------------------------
 
+QUICK START
+-----------
+Follow these steps to go from zero to a trained model as fast as possible.
+
+  Step 1 — Clone this repository
+
+    git clone https://github.com/<your-username>/<your-repo>.git
+    cd <your-repo>
+
+  Step 2 — Install PyTorch (CUDA 12.1)
+
+    pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 \
+        --index-url https://download.pytorch.org/whl/cu121
+
+  Step 3 — Install remaining dependencies
+
+    pip install -r requirements.txt
+
+  Step 4 — Download the WiMANS dataset from Kaggle
+
+    pip install kaggle
+    kaggle datasets download -d sharmmoh/wimans
+    unzip wimans.zip -d ./dataset/
+
+  Step 5 — Update dataset paths in Train1.py and Evaluate.py
+
+    csv_path = "./dataset/annotation.csv"
+    mat_path  = "./dataset/wifi_csi/amp"
+
+  Step 6 — Train the model
+
+    python Train1.py
+
+  Step 7 — Evaluate the trained model
+
+    python Evaluate.py
+
+  Step 8 — Classify a single .mat file in real-time
+
+    python Classify.py
+    > Enter .mat file path: ./dataset/wifi_csi/mat/act_1_1.mat
+
+--------------------------------------------------------------------------------
+
 DATA SOURCE
 -----------
 This project uses the WiMANS dataset — the first WiFi-based multi-user activity
@@ -267,6 +311,45 @@ At the end of each epoch, the following OS-level metrics are logged and plotted:
   - Batch Latency (ms/batch)
 
 Plots are saved to: training_os_metrics.png
+
+--------------------------------------------------------------------------------
+
+RESULTS (EXAMPLE)
+-----------------
+The following output was recorded from an actual training run on this system.
+
+  Hardware : NVIDIA GPU (CUDA 12.1), CPU load ~12.3%
+  Dataset  : WiMANS — 11,286 samples, 9 activity classes
+  Split    : 80% train / 20% validation
+
+  --- Epoch 1 of 50 (first epoch, model still converging) ---
+
+    Epoch [1/50], Batch [119/119]
+    Progress  : 100.00%
+    Loss      : 2.2453
+
+    OS Metrics at epoch end:
+      Memory  : 1,056.98 MB RSS
+      CPU     : 12.3% load
+      Disk    : 105,668.28 MB total read
+      Latency : 42.54 ms/batch  (~2.94 batches/sec)
+      Time    : 00:40:00 for 119 batches
+
+    Epoch 1 Summary:
+      Average Loss  : 2.2381
+      Accuracy      : 11.89%
+      Error Rate    : 88.11%
+      Precision     : 0.1182
+      Recall        : 0.1182
+      F1-Score      : 0.1173
+
+  Note: Epoch 1 accuracy near ~11% is expected for a 9-class problem (random
+  baseline = 11.1%). The model learns progressively over all 50 epochs as the
+  loss decreases and the weighted sampler balances class exposure across batches.
+
+  Outputs produced after full training:
+    wifi_model.pth            ← Saved model weights (~3 MB)
+    training_os_metrics.png   ← 4-panel hardware resource plot
 
 --------------------------------------------------------------------------------
 

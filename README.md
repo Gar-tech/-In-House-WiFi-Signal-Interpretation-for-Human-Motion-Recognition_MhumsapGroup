@@ -265,7 +265,7 @@ HOW TO RUN
 MODEL ARCHITECTURE
 ------------------
 AmplitudeOnlyModel (Model.py)
-
+```text
   Input:  [Batch, 30 subcarriers, 1000 time steps]
 
   Stem Block:
@@ -280,7 +280,7 @@ AmplitudeOnlyModel (Model.py)
 
   Classifier:
     Dropout(0.5) → Linear(256 → 9)
-
+```
 --------------------------------------------------------------------------------
 
 PREPROCESSING PIPELINE (Utils.py)

@@ -1,6 +1,6 @@
 
 
- Wi-Fi CSI Human Activity Recognition System — README
+# **Wi-Fi CSI Human Activity Recognition System — README**
 
 
 OVERVIEW

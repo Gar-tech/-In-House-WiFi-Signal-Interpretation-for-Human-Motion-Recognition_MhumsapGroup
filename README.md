@@ -280,7 +280,7 @@ sensing benchmark, based on Wi-Fi Channel State Information (CSI).
 ```text
   Name    : WiMANS (WiFi-based Multi-user Activity Sensing)
   Samples : 11,286 CSI samples (3-second each, dual-band 2.4 / 5 GHz)
-  Content : Up to 5 users performing activities simultaneously
+  Content : Up to 5 users performing activities simultaneously However, in this project, each sample is treated as a single-label classification problem, where one dominant activity is assigned per sample.
   Annotations: User identities, locations, and activities per sample
 
   Kaggle  : https://www.kaggle.com/datasets/sharmmoh/wimans

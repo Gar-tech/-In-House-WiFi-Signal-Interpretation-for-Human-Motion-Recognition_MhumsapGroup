@@ -244,12 +244,8 @@ Option B — GitHub
 
 --------------------------------------------------------------------------------
 
-DATASET DIRECTORY STRUCTURE
+## 📁 Dataset Directory Structure
 ----------------------------
-After extraction, the dataset folder should look like this:
-
- ## 📁 Dataset Directory Structure
-
 After extraction, the dataset folder should look like this:
 
 ```text

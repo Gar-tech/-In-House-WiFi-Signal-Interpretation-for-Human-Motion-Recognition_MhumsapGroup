@@ -141,7 +141,7 @@ DATA SOURCE
 -----------
 This project uses the WiMANS dataset — the first WiFi-based multi-user activity
 sensing benchmark, based on Wi-Fi Channel State Information (CSI).
-
+```text
   Name    : WiMANS (WiFi-based Multi-user Activity Sensing)
   Samples : 11,286 CSI samples (3-second each, dual-band 2.4 / 5 GHz)
   Content : Up to 5 users performing activities simultaneously
@@ -149,7 +149,7 @@ sensing benchmark, based on Wi-Fi Channel State Information (CSI).
 
   Kaggle  : https://www.kaggle.com/datasets/sharmmoh/wimans
   GitHub  : https://github.com/huangshk/WiMANS
-
+```
 --------------------------------------------------------------------------------
 
 HOW TO DOWNLOAD THE DATASET

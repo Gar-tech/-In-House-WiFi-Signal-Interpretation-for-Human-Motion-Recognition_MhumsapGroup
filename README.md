@@ -148,8 +148,7 @@ CUDA 12.1 is required for GPU-accelerated training (torch+cu121 build).
 ```
 To install PyTorch with CUDA 12.1 support:
 
-  pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 \
-      --index-url https://download.pytorch.org/whl/cu121
+  pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
 
 To install all remaining dependencies:
 

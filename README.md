@@ -215,8 +215,7 @@ Use this if you already have the project folder on your machine
 
   Step 1 — Install PyTorch (CUDA 12.1)
 
-    pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 \
-        --index-url https://download.pytorch.org/whl/cu121
+    pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
 
   Step 2 — Install remaining dependencies
 

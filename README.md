@@ -174,8 +174,7 @@ Follow these steps to go from zero to a trained model as fast as possible.
 
   Step 2 — Install PyTorch (CUDA 12.1)
 
-    pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 \
-        --index-url https://download.pytorch.org/whl/cu121
+    pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
 
   Step 3 — Install remaining dependencies
 

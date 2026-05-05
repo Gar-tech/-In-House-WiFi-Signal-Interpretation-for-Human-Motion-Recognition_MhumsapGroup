@@ -156,8 +156,7 @@ To install all remaining dependencies:
 
 CPU-only alternative (no GPU):
 
-  pip install torch torchvision torchaudio \
-      --index-url https://download.pytorch.org/whl/cpu
+  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
   pip install numpy pandas scipy scikit-learn matplotlib tqdm psutil
 
 --------------------------------------------------------------------------------
